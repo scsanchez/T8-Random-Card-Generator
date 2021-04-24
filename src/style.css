@@ -1,1 +1,26 @@
-@import "~bootstrap/dist/css/bootstrap.min.css";
+:root {
+  --main-bg-color: rgba(0, 128, 0, 0.801);
+  --spade-bg-color: black;
+  --clubs-bg-color: blue;
+  --hearts-bg-color: red;
+  --diamons-bg-color: pink;
+}
+
+body {
+  background-color:var(--main-bg-color);
+}
+
+.black {
+  --spade-bg-color: black;
+}
+.card {
+background-color: white;
+position: absolute;
+left: 20%; /* Buscamos el centro vertical (relativo) del navegador */
+right: 20%;
+bottom: 20%;
+width: 20rem; /* Definimos el ancho del objeto a centrar */
+height: 30rem; /* Definimos el alto del objeto a centrar */
+margin-top: -1rem; /* Restamos la mitad de la altura del objeto con un margin-top */
+margin-left: -1rem; /* Restamos la mitad de la anchura del objeto con un margin-left */
+}
