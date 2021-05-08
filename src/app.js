@@ -1,54 +1,82 @@
-window.onload = () => {
-  const number = [
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "J",
-    "Q",
-    "K",
-    "A"
-  ];
-  let suit = ["diamonds", "hearts", "clubs", "spades"];
-  // let suit = [
-  //     "https://cdn1.iconfinder.com/data/icons/games-7/48/Diamonds-512.png",
-  //     "https://cdn1.iconfinder.com/data/icons/games-7/48/Diamonds-512.png",
-  //     "https://cdn1.iconfinder.com/data/icons/games-7/48/Diamonds-512.png",
-  //     "https://cdn1.iconfinder.com/data/icons/games-7/48/Diamonds-512.png"
-  // ];
-  //   let suit = ["❤", "✌", "🤷‍♂️", "🐱‍🏍"];
+/* eslint-disable */
+import "bootstrap";
+import "./style.css";
 
-  let a = randomNumber(number);
-  let b = randomSuit(suit);
+const INPUT = document.querySelector("#inputOfNumberOfCards");
+const BUTTON = document.querySelector("#generatorCard");
+const VALUES = [
+  "A",
+  "2",
+  "3",
+  "4",
+  "5",
+  "6",
+  "7",
+  "8",
+  "9",
+  "10",
+  "J",
+  "Q",
+  "K"
+];
+const SUITS = ["♠", "♣", "♥", "♦"];
+const SECTION_TO_DRAW = document.querySelector("#drawnCardsContainer");
 
-  document.querySelector("#number").innerHTML = randomNumber(number);
+window.onload = function() {
+  getCards();
 };
 
-function randomNumber(number) {
-  let randomnumber = Math.floor(Math.random() * number.length);
-  let showNumber = number[randomnumber];
-  console.log(showNumber);
-  return showNumber;
-}
+const getCards = () => {
+  BUTTON.addEventListener("click", event => {
+    event.preventDefault();
+    for (let index = 0; index < INPUT.value; index++) {
+      drawCard(generateCards());
+    }
+  });
+};
 
-function randomSuit(suit) {
-  let randomsuit = Math.floor(Math.random() * suit.length);
-  let showSuit = suit[randomsuit];
+const generateCards = () => {
+  let card = {
+    value: VALUES[getRandom(VALUES.length)],
+    suit: SUITS[getRandom(SUITS.length)]
+  };
+  return card;
+};
 
-  // document.querySelectorAll(".symbol").forEach(element => {
-  //     element.classList.add(showSuit)
-  // });
+const getRandom = maxNumber => {
+  return Math.floor(Math.random() * maxNumber);
+};
 
-  const nodes = document.querySelectorAll(".symbol");
-  for (i = 0; i < nodes.length; i++) {
-    nodes[i].classList.add(showSuit);
+const drawCard = card => {
+  let cardBody = document.createElement("div");
+  cardBody.classList.add("card");
+
+  let firstSuitContainer = document.createElement("div");
+  let firstSuit = document.createTextNode(card.suit);
+  firstSuitContainer.appendChild(firstSuit);
+  firstSuitContainer.classList.add("firstSuit");
+
+  let valueContainer = document.createElement("div");
+  let value = document.createTextNode(card.value);
+  valueContainer.appendChild(value);
+  valueContainer.classList.add("valueContainer");
+
+  let secondSuitContainer = document.createElement("div");
+  let secondSuit = document.createTextNode(card.suit);
+  secondSuitContainer.appendChild(secondSuit);
+  secondSuitContainer.classList.add("secondSuit");
+
+  if (card.suit == "♥" || card.suit == "♦") {
+    firstSuitContainer.classList.add("red");
+    secondSuitContainer.classList.add("red");
+  } else {
+    firstSuitContainer.classList.add("black");
+    secondSuitContainer.classList.add("black");
   }
 
-  console.log(showSuit);
-  return showSuit;
-}
+  cardBody.appendChild(firstSuitContainer);
+  cardBody.appendChild(valueContainer);
+  cardBody.appendChild(secondSuitContainer);
+
+  SECTION_TO_DRAW.appendChild(cardBody);
+};

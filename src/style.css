@@ -1,26 +1,39 @@
-:root {
-  --main-bg-color: rgba(0, 128, 0, 0.801);
-  --spade-bg-color: black;
-  --clubs-bg-color: blue;
-  --hearts-bg-color: red;
-  --diamons-bg-color: pink;
+@import "~bootstrap/dist/css/bootstrap.min.css";
+body {
+  background-color: rgb(122, 130, 167);
+  margin: 1rem;
+}
+section {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-body {
-  background-color:var(--main-bg-color);
+.card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  width: 9rem;
+  padding: 0.1rem;
+  border-radius: 0.5rem;
+  font-size: 3rem;
+}
+
+.red {
+  color: red;
 }
 
 .black {
-  --spade-bg-color: black;
+  color: black;
 }
-.card {
-background-color: white;
-position: absolute;
-left: 20%; /* Buscamos el centro vertical (relativo) del navegador */
-right: 20%;
-bottom: 20%;
-width: 20rem; /* Definimos el ancho del objeto a centrar */
-height: 30rem; /* Definimos el alto del objeto a centrar */
-margin-top: -1rem; /* Restamos la mitad de la altura del objeto con un margin-top */
-margin-left: -1rem; /* Restamos la mitad de la anchura del objeto con un margin-left */
+
+.firstSuit {
+  padding-left: 0.5rem;
+}
+.secondSuit {
+  padding-left: 6rem;
+}
+.valueContainer {
+  text-align: center;
+  font-size: 5rem;
 }
