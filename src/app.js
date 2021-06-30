@@ -29,9 +29,7 @@ window.onload = function() {
 const getCards = () => {
   BUTTON.addEventListener("click", event => {
     event.preventDefault();
-    for (let index = 0; index < INPUT.value; index++) {
-      drawCard(generateCards());
-    }
+    drawCard(generateCards());
   });
 };
 
